@@ -1,23 +1,503 @@
-<div class="experiment-card">
+<!DOCTYPE html>
+<html lang="en">
 
-    <span class="experiment-number">
-        Arduino Experiment No. 1
-    </span>
+<head>
 
-    <h3>
-        LED Blinking
-    </h3>
+    <meta charset="UTF-8">
 
-    <p>
-        Basic Arduino experiment to control an LED
-        using a digital output pin.
-    </p>
-
-    <a
-        href="https://YOUR_GITHUB_USERNAME.github.io/Arduino-Experiment-01/"
-        class="open-button"
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
-        Open Experiment →
-    </a>
 
-</div>
+    <title>Arduino Experiments</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eef4ff
+                );
+
+            color: #1e293b;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+
+            padding: 65px 20px 50px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            color: white;
+        }
+
+
+        .header-tag {
+
+            display: inline-block;
+
+            padding: 7px 14px;
+
+            margin-bottom: 18px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.2);
+
+            border-radius: 30px;
+
+            color: #bfdbfe;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .header h1 {
+
+            margin-bottom: 12px;
+
+            font-size: 44px;
+        }
+
+
+        .header p {
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #cbd5e1;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           MAIN AREA
+        ========================= */
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 55px 0;
+        }
+
+
+        .section-title {
+
+            margin-bottom: 30px;
+
+            text-align: center;
+        }
+
+
+        .section-title h2 {
+
+            margin-bottom: 8px;
+
+            color: #0f172a;
+
+            font-size: 30px;
+        }
+
+
+        .section-title p {
+
+            color: #64748b;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           EXPERIMENT GRID
+        ========================= */
+
+        .experiment-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 24px;
+        }
+
+
+        /* =========================
+           EXPERIMENT CARD
+        ========================= */
+
+        .experiment-card {
+
+            position: relative;
+
+            padding: 30px;
+
+            background: white;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.08);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .experiment-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 16px 35px
+                rgba(15, 23, 42, 0.14);
+        }
+
+
+        /* =========================
+           EXPERIMENT NUMBER
+        ========================= */
+
+        .experiment-number {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            margin-bottom: 17px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CARD TEXT
+        ========================= */
+
+        .experiment-card h2 {
+
+            margin-bottom: 12px;
+
+            color: #0f172a;
+
+            font-size: 26px;
+        }
+
+
+        .experiment-card p {
+
+            min-height: 55px;
+
+            margin-bottom: 22px;
+
+            color: #64748b;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .open-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 5px 14px
+                rgba(37, 99, 235, 0.25);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .open-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(37, 99, 235, 0.35);
+        }
+
+
+        .arrow {
+
+            transition:
+                transform 0.25s ease;
+        }
+
+
+        .open-button:hover .arrow {
+
+            transform:
+                translateX(4px);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            padding: 25px 20px;
+
+            text-align: center;
+
+            background: #020617;
+
+            color: #94a3b8;
+
+            font-size: 14px;
+        }
+
+
+        footer strong {
+
+            color: white;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 700px) {
+
+            .header {
+
+                padding:
+                    50px 18px 40px;
+            }
+
+
+            .header h1 {
+
+                font-size: 34px;
+            }
+
+
+            .experiment-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .experiment-card {
+
+                padding: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <span class="header-tag">
+            ARDUINO • IoT KIT EXPERIMENTS
+        </span>
+
+        <h1>
+            Arduino Experiments
+        </h1>
+
+        <p>
+            Explore practical Arduino experiments with
+            hardware connections, working principles,
+            source code and step-by-step implementation.
+        </p>
+
+    </header>
+
+
+
+    <!-- =========================
+         EXPERIMENTS
+    ========================= -->
+
+    <main class="container">
+
+
+        <div class="section-title">
+
+            <h2>
+                Experiment Library
+            </h2>
+
+            <p>
+                Select an experiment to view the complete guide.
+            </p>
+
+        </div>
+
+
+
+        <div class="experiment-grid">
+
+
+            <!-- =========================
+                 EXPERIMENT 01
+            ========================= -->
+
+            <div class="experiment-card">
+
+
+                <span class="experiment-number">
+                    Arduino Experiment No. 1
+                </span>
+
+
+                <h2>
+                    LED Blinking
+                </h2>
+
+
+                <p>
+                    Basic Arduino experiment to control
+                    an LED using a digital output pin.
+                </p>
+
+
+                <a
+                    href="YOUR-EXPERIMENT-1-LINK"
+                    class="open-button"
+                >
+
+                    Open Experiment
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <strong>
+            Arduino Experiment Library
+        </strong>
+
+        <br>
+
+        IoT Kits • Embedded Systems • Practical Learning
+
+    </footer>
+
+
+</body>
+
+</html>
