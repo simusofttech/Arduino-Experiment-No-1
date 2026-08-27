@@ -1,178 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Arduino Experiments</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
-
-        /* HEADER */
-
-        .header {
-            background: #2563eb;
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-        }
-
-        .header h1 {
-            margin: 0 0 8px;
-            font-size: 32px;
-        }
-
-        .header p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        /* MAIN AREA */
-
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 35px auto;
-        }
-
-        .container > h2 {
-            color: #1e3a8a;
-            margin-bottom: 25px;
-        }
-
-        /* EXPERIMENT CARD */
-
-        .experiment-card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .experiment-number {
-            color: #2563eb;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .experiment-card h2 {
-            margin: 10px 0;
-            color: #111827;
-        }
-
-        .experiment-card p {
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        /* BUTTON */
-
-        .open-button {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 10px 18px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .open-button:hover {
-            background: #1d4ed8;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 600px) {
-
-            .header h1 {
-                font-size: 27px;
-            }
-
-            .container {
-                width: 92%;
-            }
-
-            .experiment-card {
-                padding: 20px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arduino Experiment No. 1 - LED Blinking</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#222;line-height:1.7}
+.header{background:#2563eb;color:white;text-align:center;padding:42px 20px}.header h1{margin:0 0 8px;font-size:34px}.header p{margin:0;font-size:17px}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;padding:13px 15px;background:white;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:10}
+nav a{text-decoration:none;color:#1e3a8a;font-size:14px;font-weight:bold}nav a:hover{color:#2563eb}
+.container{width:90%;max-width:950px;margin:35px auto}
+.section{background:white;margin-bottom:24px;padding:28px;border:1px solid #ddd;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.section h2{margin-top:0;margin-bottom:18px;color:#1e3a8a;font-size:25px;border-bottom:2px solid #dbeafe;padding-bottom:8px}
+.section h3{color:#1e3a8a;margin-top:22px}.section p{margin-bottom:10px}
+ul,ol{padding-left:24px}li{margin-bottom:8px}.table-wrap{overflow-x:auto}
+table{width:100%;min-width:560px;border-collapse:collapse}th,td{padding:12px;border:1px solid #ddd;text-align:left}th{background:#2563eb;color:white}tr:nth-child(even){background:#f8fafc}
+.flow{text-align:center;font-weight:bold;color:#1e3a8a;font-size:18px;line-height:2}
+.code-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#1e293b;color:white;border-radius:8px 8px 0 0}
+.copy-button{border:0;padding:7px 12px;background:#2563eb;color:white;border-radius:5px;cursor:pointer;font-weight:bold}
+pre{margin:0;padding:20px;overflow-x:auto;background:#020617;color:#e2e8f0;border-radius:0 0 8px 8px;font-family:Consolas,monospace;font-size:14px;line-height:1.7}
+.note{margin-top:15px;padding:14px;background:#eff6ff;border-left:5px solid #2563eb;border-radius:6px}
+footer{text-align:center;padding:25px 20px;background:#0f172a;color:#cbd5e1;font-size:14px}footer strong{color:white}
+@media(max-width:600px){.header{padding:35px 15px}.header h1{font-size:28px}.container{width:92%}.section{padding:21px 18px}nav{gap:11px}}
+</style>
 </head>
-
-
 <body>
+<header class="header">
+<h1>Arduino Experiment No. 1</h1>
+<p>LED Blinking</p>
+</header>
 
+<nav>
+<a href="#aim">Aim</a>
+<a href="#components">Components</a>
+<a href="#connections">Connections</a>
+<a href="#working">Working</a>
+<a href="#procedure">Procedure</a>
+<a href="#code">Code</a>
+<a href="#output">Output</a>
+</nav>
 
-    <!-- HEADER -->
+<main class="container">
 
-    <div class="header">
+<section class="section" id="aim">
+<h2>Aim</h2>
+<p>To blink an LED using an Arduino digital output pin by turning the LED ON and OFF at a fixed time interval.</p>
+</section>
 
-        <h1>Arduino Experiments</h1>
+<section class="section">
+<h2>About the Experiment</h2>
+<p>LED Blinking is one of the basic Arduino experiments. It demonstrates how a digital output pin can be controlled using a simple Arduino program.</p>
+<p>In this experiment, the LED connected to digital pin 13 is turned ON for 500 milliseconds and then turned OFF for 500 milliseconds. This process repeats continuously.</p>
+</section>
 
-        <p>
-            IoT Kit Practical Experiments
-        </p>
+<section class="section" id="components">
+<h2>Components Required</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Component</th><th>Quantity</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Arduino UNO</td><td>1</td><td>Main controller</td></tr>
+<tr><td>LED</td><td>1</td><td>Visual output</td></tr>
+<tr><td>220Ω Resistor</td><td>1</td><td>Limits LED current</td></tr>
+<tr><td>Jumper Wires</td><td>As required</td><td>Electrical connections</td></tr>
+<tr><td>Breadboard</td><td>1</td><td>Prototype circuit assembly</td></tr>
+<tr><td>USB Cable</td><td>1</td><td>Programming and power</td></tr>
+</tbody>
+</table>
+</div>
+</section>
 
-    </div>
+<section class="section" id="connections">
+<h2>Hardware Connections</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>LED / Component</th><th>Arduino Connection</th></tr></thead>
+<tbody>
+<tr><td>LED Anode (+)</td><td>Digital Pin 13 through 220Ω resistor</td></tr>
+<tr><td>LED Cathode (-)</td><td>GND</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">If you use the Arduino UNO's built-in LED, no external LED or resistor is required. The built-in LED is connected to pin 13.</div>
+</section>
 
+<section class="section" id="working">
+<h2>Working Principle</h2>
+<div class="flow">
+Arduino Starts<br>↓<br>
+Pin 13 is configured as OUTPUT<br>↓<br>
+Pin 13 becomes HIGH<br>↓<br>
+LED turns ON for 500 ms<br>↓<br>
+Pin 13 becomes LOW<br>↓<br>
+LED turns OFF for 500 ms<br>↓<br>
+Process repeats continuously
+</div>
+</section>
 
-    <!-- MAIN CONTENT -->
+<section class="section" id="procedure">
+<h2>Procedure</h2>
+<ol>
+<li>Connect the Arduino UNO to the computer using the USB cable.</li>
+<li>Make the LED connections as shown in the Hardware Connections section.</li>
+<li>Open Arduino IDE.</li>
+<li>Go to <strong>Tools → Board</strong> and select <strong>Arduino UNO</strong>.</li>
+<li>Go to <strong>Tools → Port</strong> and select the correct COM port.</li>
+<li>Enter the LED blinking program.</li>
+<li>Click <strong>Verify</strong> to compile the program.</li>
+<li>Click <strong>Upload</strong> to upload it to the Arduino.</li>
+<li>Observe the LED.</li>
+</ol>
+</section>
 
-    <div class="container">
+<section class="section" id="code">
+<h2>Arduino Code</h2>
+<div class="code-header">
+<span>LED_Blink.ino</span>
+<button class="copy-button" onclick="copyCode()">Copy Code</button>
+</div>
+<pre><code id="arduinoCode">void setup() {
+    pinMode(13, OUTPUT); // Set pin 13 as output
+}
 
-        <h2>Experiment List</h2>
+void loop() {
+    digitalWrite(13, HIGH); // Turn LED ON
+    delay(500); // Wait for 500 milliseconds
+    digitalWrite(13, LOW); // Turn LED OFF
+    delay(500); // Wait for 500 milliseconds
+}</code></pre>
+</section>
 
+<section class="section">
+<h2>Code Explanation</h2>
+<h3>pinMode(13, OUTPUT)</h3>
+<p>Configures Arduino digital pin 13 as an output pin.</p>
+<h3>digitalWrite(13, HIGH)</h3>
+<p>Provides a HIGH signal on pin 13 and turns the LED ON.</p>
+<h3>delay(500)</h3>
+<p>Stops the program for 500 milliseconds, which is equal to 0.5 seconds.</p>
+<h3>digitalWrite(13, LOW)</h3>
+<p>Provides a LOW signal on pin 13 and turns the LED OFF.</p>
+<h3>loop()</h3>
+<p>The code inside the loop function continuously repeats, causing the LED to keep blinking.</p>
+</section>
 
-        <!-- EXPERIMENT 1 -->
+<section class="section" id="output">
+<h2>Expected Output</h2>
+<ul>
+<li>LED turns ON.</li>
+<li>LED remains ON for 500 milliseconds.</li>
+<li>LED turns OFF.</li>
+<li>LED remains OFF for 500 milliseconds.</li>
+<li>The blinking sequence repeats continuously.</li>
+</ul>
+</section>
 
-        <div class="experiment-card">
+<section class="section">
+<h2>Result</h2>
+<p>The LED blinking experiment was successfully implemented using Arduino digital pin 13. The LED continuously switches ON and OFF with a delay of 500 milliseconds.</p>
+</section>
 
-            <div class="experiment-number">
-                Arduino Experiment No. 1
-            </div>
+<section class="section">
+<h2>What You Learn</h2>
+<ul>
+<li>Basic Arduino programming structure.</li>
+<li>Difference between setup() and loop().</li>
+<li>How to configure a digital output pin.</li>
+<li>How to turn a digital output ON and OFF.</li>
+<li>How to use the delay() function.</li>
+<li>Basic LED interfacing with Arduino.</li>
+</ul>
+</section>
 
-            <h2>
-                LED Blinking
-            </h2>
+</main>
 
-            <p>
-                Basic Arduino experiment to control an LED
-                using a digital output pin.
-            </p>
+<footer>
+<strong>Arduino Experiment No. 1</strong><br>
+LED Blinking
+</footer>
 
-            <a
-                href="YOUR-EXPERIMENT-LINK"
-                class="open-button"
-            >
-                Open Experiment →
-            </a>
-
-        </div>
-
-
-    </div>
-
+<script>
+function copyCode() {
+    const code = document.getElementById("arduinoCode").innerText;
+    navigator.clipboard.writeText(code);
+}
+</script>
 
 </body>
-
 </html>
